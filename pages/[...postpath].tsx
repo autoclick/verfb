@@ -51,6 +51,19 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 		}
 	`;
 	console.log(query);
+	const data = await graphQLClient.request(query);
+	if (!data.post) {
+		return {
+			notFound: true,
+		};
+	}
+	return {
+		props: {
+			path,
+			post: data.post,
+			host: ctx.req.headers.host,
+		},
+	};
 };
 
 interface PostProps {

@@ -9,11 +9,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 	const referringURL = ctx.req.headers?.referer || null;
 	const pathArr = ctx.query.postpath as Array<string>;
 	const path = pathArr.join('/');
-	console.log(path);
+	// console.log(path);
 	const fbclid = ctx.query.fbclid;
 	
-	console.log(fbclid);
-	console.log(endpoint);
+	// console.log(fbclid);
+	// console.log(endpoint);
 	// redirect if facebook is the referer or request contains fbclid
 	if (referringURL?.includes('facebook.com') || fbclid) {
 		return {
@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 			},
 		};
 	}
-	console.log("testlog/${path}/");
+	// console.log("testlog/${path}/");
 	const query = gql`
 		{
 			post(id: "/${path}/", idType: URI) {
@@ -39,7 +39,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 			}
 		}
 	`;
-	console.log(query);
+	// console.log(query);
 	const data = await graphQLClient.request(query);
 	if (!data.post) {
 		return {

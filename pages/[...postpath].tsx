@@ -19,7 +19,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 			redirect: {
 				permanent: false,
 				destination: `${
-					endpoint.replace(/(\/graphql\/)/, '/') + encodeURI(path as string)
+					endpoint.replace(/(\/graphql\/)/, '/') + encodeURI(path as string)+"/"
 				}`,
 			},
 		};
@@ -75,9 +75,9 @@ const Post: React.FC<PostProps> = (props) => {
 		<>
 			<Head>
 				<meta property="og:title" content={post.title} />
-				<link rel="canonical" href={`https://${host}/${path}`} />
+				<link rel="canonical" href={`https://${host}/${path}/`} />
 				<meta property="og:description" content={removeTags(post.excerpt)} />
-				<meta property="og:url" content={`https://${host}/${path}`} />
+				<meta property="og:url" content={`https://${host}/${path}/`} />
 				<meta property="og:type" content="article" />
 				<meta property="og:locale" content="en_US" />
 				<meta property="og:site_name" content={host.split('.')[0]} />
